@@ -1,0 +1,39 @@
+{% load static %}
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<link rel="stylesheet" type="text/css" href="{% static 'generator/style.css' %}">
+<body>
+    <select class = "menu">
+        <option value="" class="choise">...</option>
+        <option value="" class="choise">Документация</option>
+        <option value="" class="choise">покормить студентов</option>
+        <option value="" class="choise">О нас</option>
+    </select>
+    <div class="name_container">
+        <h1 class="Our_name">
+            Mamotn's Logo Company
+        </h1>
+    </div>
+    <div class="block_with_form">
+        <form action="" class="form" method="post">
+            {% csrf_token %}
+            <p class="form"><input type="submit" value="сгенерировать" class="button"></p>
+            <p class="form">{{ form }}</p>
+        </form>
+    </div>
+        <div class = "image_place">
+        {% if table.rows %}
+        <p class = "image_header">Логотипы по вашему запросу:</p>
+        <table>
+        {% for row in table.rows%}
+            <tr>
+                {% for col in row %}
+                    <img src="{% static col %}" width="100px" height="100px">
+                {% endfor %}
+            </tr>
+        </table>
+        {% endfor %}     
+        {% endif %}
+        </div>
+</body>
